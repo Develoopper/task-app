@@ -1,16 +1,25 @@
 import React, { Component } from 'react';
 import Task from "./Components/Task";
+import AppBar from './Components/AppBar';
+import AddModal from './Components/AddModal';
 import './App.css';
-import NavBar from './Components/NavBar';
+import { Grid } from '@material-ui/core';
+import FAB from './Components/FAB';
 
 class App extends Component {
   state = {
     tasks: [
-      { title: "Title1", content:"content1" },
-      { title: "Title2", content:"content2" },
-      { title: "Title3", content:"content3" },
-      { title: "Title4", content:"content4" },
-    ]
+      { title: "Title 1", content: "Content 1" },
+      { title: "Title 2", content: "Content 2" },
+      { title: "Title 3", content: "Content 3" },
+      { title: "Title 4", content: "Content 4" },
+    ],
+  }
+
+  handleAdd = (title, content) => {
+    this.setState({
+      tasks: [...this.state.tasks, { title, content }]
+    })
   }
 
   handleDelete = (title) => {
@@ -22,14 +31,15 @@ class App extends Component {
   render() {
     return (
       <>
-        <NavBar/>
-        <div className="row">
+        <AppBar count={this.state.tasks.length}/>
+        <Grid container spacing={1} style={{ marginTop: 20 }}>
           {
             this.state.tasks.map((task, index) => {
-              return <Task title={task.title} content={task.content} delete={this.handleDelete} key={index}/>
+              return <Task title={task.title} content={task.content} handleDelete={this.handleDelete} key={index}/>
             })
           }
-        </div>
+        </Grid>
+        <AddModal handleAdd={this.handleAdd}/>
       </>
     );
   };
