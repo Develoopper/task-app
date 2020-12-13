@@ -9,7 +9,8 @@ import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import {
 	Delete as DeleteIcon,
-	Edit as EditIcon
+	Edit as EditIcon,
+	Info as InfoIcon
 } from '@material-ui/icons/';
 
 const useStyles = makeStyles((theme) => ({
@@ -26,16 +27,25 @@ export default function Task({title, content, handleDelete}) {
 		<Grid item xs={12} sm={6} md={4} lg={3} spacing={3}>
 			<Card className={classes.root}>
 				<CardActionArea>
-					<CardContent>
+					<CardContent align="center">
 						<Typography gutterBottom variant="h5" component="h2">
 							{title}
 						</Typography>
 						<Typography variant="body2" color="textSecondary" component="p">
-						{content}
+							{content}
 						</Typography>
 					</CardContent>
 				</CardActionArea>
 				<CardActions>
+					<Button
+						variant="contained"
+						color="secondary"
+						className={classes.button}
+						startIcon={<InfoIcon />}
+						onClick={() => null}
+					>
+						Info
+					</Button>
 					<Button
 						variant="contained"
 						color="secondary"

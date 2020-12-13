@@ -34,11 +34,12 @@ export default function AddModal({handleAdd}) {
   return (
     <div>
       <FAB handleClickOpen={handleClickOpen}/>
-
+      {/* // TODO: */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">New task</DialogTitle>
         <DialogContent>
           <TextField
+            color="secondary"
             autoFocus
             margin="dense"
             id="title"
@@ -49,6 +50,7 @@ export default function AddModal({handleAdd}) {
           />
           <span style={{ marginLeft: 10 }}/>
           <TextField
+            color="secondary"
             autoFocus
             margin="dense"
             id="content"
@@ -67,8 +69,10 @@ export default function AddModal({handleAdd}) {
             onClick={() => {
               setOpen(false);
               handleAdd(formData.title, formData.content)
-            }} 
-            color="primary">
+            }}
+            variant="contained"
+            color="primary"
+          >
             Add
           </Button>
         </DialogActions>
