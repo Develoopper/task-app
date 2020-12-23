@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "title": "Clean kitchen",
+      "description": "Don't forget the are under the sink!!",
+      "img": "bg.png"
+    },
+    {
+      "id": 2,
+      "title": "Call Eric",
+      "description": "Remind him to do his taxes"
+    },
+    {
+      "id": 3,
+      "title": "Water flowers",
+      "description": "Don't forget the ones in the garden!"
+    }
+  ]
+}

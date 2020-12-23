@@ -23,12 +23,12 @@ const style = {
   position: 'fixed',
 };
 
-export default function FloatingActionButtons({handleClickOpen}) {
+export default function FAB({handleClickOpen}) {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Fab color="primary" aria-label="add" style={style} onClick={handleClickOpen}>
+      <Fab color="primary" style={style} onClick={handleClickOpen}>
         <AddIcon />
       </Fab>
     </div>

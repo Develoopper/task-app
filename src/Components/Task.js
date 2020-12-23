@@ -9,9 +9,9 @@ import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import {
 	Delete as DeleteIcon,
-	Edit as EditIcon,
 	Info as InfoIcon
 } from '@material-ui/icons/';
+import EditModal from './EditModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-export default function Task({title, content, handleDelete}) {
+export default function Task({ task: {id, title, content}, handleDelete, handleEdit }) {
   const classes = useStyles();
 
   return (
@@ -40,26 +40,19 @@ export default function Task({title, content, handleDelete}) {
 					<Button
 						variant="contained"
 						color="secondary"
-						className={classes.button}
 						startIcon={<InfoIcon />}
 						onClick={() => null}
 					>
 						Info
 					</Button>
+
+					<EditModal id={id} title={title} content={content} handleEdit={handleEdit}/>
+
 					<Button
 						variant="contained"
 						color="secondary"
-						className={classes.button}
-						startIcon={<EditIcon />}
-					>
-						Edit
-					</Button>
-					<Button
-						variant="contained"
-						color="secondary"
-						className={classes.button}
 						startIcon={<DeleteIcon />}
-						onClick={() => handleDelete(title)}
+						onClick={() => handleDelete(id)}
 					>
 						Delete
 					</Button>

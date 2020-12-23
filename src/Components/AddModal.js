@@ -23,6 +23,12 @@ export default function AddModal({handleAdd}) {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
 
+  const handleSubmit = () => {
+    setOpen(false);
+    handleAdd(formData.title, formData.content);
+    setFormData({ title: "", content: "" });
+  };
+
   // const handleChangeTitle = (e) => {
   //   setFormData({ ...formData, title: e.target.value });
   // };
@@ -51,7 +57,6 @@ export default function AddModal({handleAdd}) {
           <span style={{ marginLeft: 10 }}/>
           <TextField
             color="secondary"
-            autoFocus
             margin="dense"
             id="content"
             label="Content"
@@ -66,10 +71,7 @@ export default function AddModal({handleAdd}) {
             Cancel
           </Button>
           <Button 
-            onClick={() => {
-              setOpen(false);
-              handleAdd(formData.title, formData.content)
-            }}
+            onClick={handleSubmit}
             variant="contained"
             color="primary"
           >

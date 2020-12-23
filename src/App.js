@@ -26,7 +26,8 @@ class App extends Component {
         this.setState({ loading: false })
 
         // add content attribute
-        data.map(task => {
+        data.map((task, index) => {
+          task.id = index + 1;
           task.content = task.description;
         })
 
@@ -43,10 +44,10 @@ class App extends Component {
         // set tasks array 
         this.setState({
           tasks: [
-            { title: "Title 1", content: "Content 1" },
-            { title: "Title 2", content: "Content 2" },
-            { title: "Title 3", content: "Content 3" },
-            { title: "Title 4", content: "Content 4" },
+            { id: 1, title: "Title 1", content: "Content 1" },
+            { id: 2, title: "Title 2", content: "Content 2" },
+            { id: 3, title: "Title 3", content: "Content 3" },
+            { id: 4, title: "Title 4", content: "Content 4" },
           ]
         })
       });
@@ -54,19 +55,37 @@ class App extends Component {
 
   // add task
   handleAdd = (title, content) => {
+    const id = this.state.tasks.length + 1;
     this.setState({
       // add { title, content } at the end of the tasks array
-      tasks: [...this.state.tasks, { title, content }]
+      tasks: [...this.state.tasks, { id, title, content }]
     })
+  }
+
+  // add task
+  handleEdit = (id, title, content) => {
+    const stateClone = [...this.state.tasks];
+    stateClone.map(task => {
+      if (task.id === id) {
+        task.title = title;
+        task.content = content;
+      }
+    });
+
+    this.setState({
+      tasks: stateClone
+    });
   }
   
   // delete task
-  handleDelete = (title) => {
+  handleDelete = (id) => {
     this.setState({
-      // let just the tasks that (task.title !== title)
-      tasks: this.state.tasks.filter(task => task.title !== title)
+      // let just the tasks that (task.id !== id)
+      tasks: this.state.tasks.filter(task => task.id !== id)
     })
   }
+
+  ref = React.createRef()
 
   render() {
     return (
@@ -85,15 +104,20 @@ class App extends Component {
                   this.state.tasks.map((task, index) => {
                     return (
                       <Task 
-                        title={task.title} content={task.content} 
-                        handleDelete={this.handleDelete} key={index}
+                        task={task} key={index}
+                        handleDelete={this.handleDelete} handleEdit={this.handleEdit} 
                       />
                     )
                   })
               }
             </Grid>
         }
+        {/* <form onSubmit={(e) => {e.preventDefault(); alert(this.ref.current.value)}}>
+          <input ref={this.ref} type="text"/>
+          <input type="submit"/>
+        </form> */}
         <AddModal handleAdd={this.handleAdd}/>
+        {/* <img src="http://localhost:3030/bg.png" style={{ width: 50, height: 50 }}/> */}
       </>
     );
   };
