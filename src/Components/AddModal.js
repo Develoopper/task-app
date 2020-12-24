@@ -40,7 +40,6 @@ export default function AddModal({handleAdd}) {
   return (
     <div>
       <FAB handleClickOpen={handleClickOpen}/>
-      {/* // TODO: */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">New task</DialogTitle>
         <DialogContent>

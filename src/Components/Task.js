@@ -24,6 +24,7 @@ export default function Task({ task: {id, title, content}, handleDelete, handleE
   const classes = useStyles();
 
   return (
+		// column
 		<Grid item xs={12} sm={6} md={4} lg={3} spacing={3}>
 			<Card className={classes.root}>
 				<CardActionArea>

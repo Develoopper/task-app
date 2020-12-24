@@ -38,7 +38,6 @@ export default function EditModal({id, title, content, handleEdit}) {
       >
         Edit
       </Button>
-      {/* // TODO: */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title">Edit task</DialogTitle>
         <DialogContent>

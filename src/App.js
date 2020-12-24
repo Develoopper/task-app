@@ -37,7 +37,6 @@ class App extends Component {
         })
       })
       .catch((error) => {
-        // TODO:
         // set loading to false
         this.setState({ loading: false })
 
@@ -62,16 +61,18 @@ class App extends Component {
     })
   }
 
-  // add task
+  // edit task
   handleEdit = (id, title, content) => {
+    // clone the tasks array
     const stateClone = [...this.state.tasks];
+    // map through the cloned tasks array and change the task that is (task.id === id)
     stateClone.map(task => {
       if (task.id === id) {
         task.title = title;
         task.content = content;
       }
     });
-
+    // set the cloned/edited array into tasks array
     this.setState({
       tasks: stateClone
     });
@@ -85,8 +86,6 @@ class App extends Component {
     })
   }
 
-  ref = React.createRef()
-
   render() {
     return (
       <>
@@ -94,8 +93,8 @@ class App extends Component {
         {
           this.state.loading ?
             <CircularProgress size={200}/>
-          :
-            // TODO:
+          :  
+            // row
             <Grid container spacing={1} style={{ marginTop: 20 }} justify={!this.state.tasks.length && "center"}>
               {
                 this.state.tasks.length === 0 ?
@@ -112,12 +111,7 @@ class App extends Component {
               }
             </Grid>
         }
-        {/* <form onSubmit={(e) => {e.preventDefault(); alert(this.ref.current.value)}}>
-          <input ref={this.ref} type="text"/>
-          <input type="submit"/>
-        </form> */}
         <AddModal handleAdd={this.handleAdd}/>
-        {/* <img src="http://localhost:3030/bg.png" style={{ width: 50, height: 50 }}/> */}
       </>
     );
   };
